@@ -2,7 +2,6 @@ package simonSays;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
@@ -20,30 +19,34 @@ public class Game {
 		
 		game.buttons(panel);
 		game.simon();
-		game.player(panel);
 		
 		frame.add(panel);
 		frame.setVisible(true);
 	}
 	
 	private void buttons(JPanel panel) {
-		String input = "";
 		
 		JButton red = new JButton("red");
 		red.setBackground(Color.red);
 		red.setPreferredSize(new Dimension(200, 100));
-//		red.addActionListener(new ActionListener() {
-//			
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				input = input + "R";
-//				
-//			}
-//		});
+		red.addActionListener(new ActionListener() {			
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				input("R");				
+			}
+		});
 		
 		JButton green = new JButton("green");
 		green.setBackground(Color.green);
 		green.setPreferredSize(new Dimension(200, 100));
+		green.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				input("G");				
+			}
+		});
 		
 		JButton yellow = new JButton("yellow");
 		yellow.setBackground(Color.yellow);
@@ -59,7 +62,7 @@ public class Game {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(input);	//test
+				//System.out.println();	//test
 				
 			}
 		});
@@ -82,7 +85,9 @@ public class Game {
 		System.out.println(sequence);		//test
 	}
 	
-	private void player(JPanel panel) {
+	private String input(String kleur) {
 		String input = "";
+		input = input + kleur;
+		return input;
 	}
 }
