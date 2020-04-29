@@ -8,10 +8,15 @@ import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Game {
-	public static void main(String[] args) {
+	String sequence = "";
+	String input = "";
+	int gameScore = 0;
+	
+	public static void main(String[] args) { //this is the main method, this is where you run other methods
 		Game game = new Game()	;
 		JFrame frame = new JFrame();
 		frame.setSize(900,600);
@@ -24,7 +29,7 @@ public class Game {
 		frame.setVisible(true);
 	}
 	
-	private void buttons(JPanel panel) {
+	private void buttons(JPanel panel) { //this method creates the buttons
 		
 		JButton red = new JButton("red");
 		red.setBackground(Color.red);
@@ -51,10 +56,24 @@ public class Game {
 		JButton yellow = new JButton("yellow");
 		yellow.setBackground(Color.yellow);
 		yellow.setPreferredSize(new Dimension(200, 100));
+		yellow.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				input("Y");
+			}
+		});
 		
 		JButton blue = new JButton("blue");
 		blue.setBackground(Color.blue);
 		blue.setPreferredSize(new Dimension(200, 100));
+		blue.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				input("B");
+			}
+		});
 		
 		JButton start = new JButton("Start");
 		start.setPreferredSize(new Dimension(100,50));
@@ -62,7 +81,7 @@ public class Game {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//System.out.println();	//test
+				controleinput();
 				
 			}
 		});
@@ -74,20 +93,27 @@ public class Game {
 		panel.add(start);
 	}
 	
-	private void simon() {
+	private void simon() { //this method creates a random pattern of letters
 		String[] array = {"R", "G", "Y","B"};
 		Random r = new Random();
 		int randomNumber = r.nextInt(array.length);
 		
-		String sequence = "";
 		sequence = sequence + array[randomNumber];
 		
 		System.out.println(sequence);		//test
 	}
 	
-	private String input(String kleur) {
-		String input = "";
+	private String input(String kleur) { //this method is what happens when you press a button
 		input = input + kleur;
+		System.out.println(input);
 		return input;
+	}
+	
+	private void controleinput() { //this method is work in progress
+		if(input == sequence) {
+			System.out.println("WIN");
+		} else {
+			System.out.println("LOSE");
+		}
 	}
 }
