@@ -99,9 +99,10 @@ public class Game {
 	}
 	
 	private void veranderkleur(JButton kleurknop) {
+		System.out.println("Verander kleur van knop: " + kleurknop.getBackground());
 		Color orignelekleur = kleurknop.getBackground();
 		kleurknop.setBackground(Color.WHITE);
-		Timer t = new Timer(2000, new ActionListener() {
+		Timer t = new Timer(1500, new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		    	kleurknop.setBackground(orignelekleur);
 		    }
@@ -115,9 +116,11 @@ public class Game {
 		    	if (sequenceCounter > sequence.length() - 1) {
 		    		sequenceCounter = 0;
 		    		t.stop();
+		    		return;
 		    	}
 		    	
 		    	char c = sequence.charAt(sequenceCounter);
+		    	System.out.println("sequenceCounter: " + sequenceCounter + ", char: " + c);
 		    	sequenceCounter++;
 		    	if (c == 'Y') {
 		    		veranderkleur(yellow);		    		
