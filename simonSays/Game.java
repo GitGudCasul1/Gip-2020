@@ -14,95 +14,32 @@ import javax.swing.Timer;
 
 public class Game {
 	String sequence = "";
-	String input = "";
+	
 	int gameScore = 0;
-	JButton blue, yellow, green, red;
+	Buttons buttons;
 	int sequenceCounter = 0;
-	Timer t = new Timer(2000, makesequenceActionListener());
+	public Timer t = new Timer(2000, makesequenceActionListener());
 	
 	public static void main(String[] args) { //this is the main method, this is where you run other methods
-		Game game = new Game()	;
+		Game game = new Game();
+		game.buttons = new Buttons(game);
 		JFrame frame = new JFrame();
 		frame.setSize(900,600);
 		JPanel panel = new JPanel();
 		
-		game.buttons(panel);
+		game.buttons.buttons(panel);
 		game.simon(4);
 		
 		frame.add(panel);
 		frame.setVisible(true);
 	}
 	
-	private void buttons(JPanel panel) { //this method creates the buttons
-		
-		red = new JButton("red");
-		red.setBackground(Color.red);
-		red.setPreferredSize(new Dimension(200, 100));
-		red.addActionListener(new ActionListener() {			
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				input("R");				
-			}
-		});
-		
-		green = new JButton("green");
-		green.setBackground(Color.green);
-		green.setPreferredSize(new Dimension(200, 100));
-		green.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				input("G");				
-			}
-		});
-		
-		yellow = new JButton("yellow");
-		yellow.setBackground(Color.yellow);
-		yellow.setPreferredSize(new Dimension(200, 100));
-		yellow.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				input("Y");
-			}
-		});
-		
-		blue = new JButton("blue");
-		blue.setBackground(Color.blue);
-		blue.setPreferredSize(new Dimension(200, 100));
-		blue.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				input("B");
-			}
-		});
-		
-		JButton start = new JButton("Start");
-		start.setPreferredSize(new Dimension(100,50));
-		start.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-//				controleinput();
-				showSequence();
-			}
-
-		});
-				
-		panel.add(red);
-		panel.add(green);
-		panel.add(yellow);
-		panel.add(blue);
-		panel.add(start);
-	}
+	
 	
 	private void veranderkleur(JButton kleurknop) {
-		System.out.println("Verander kleur van knop: " + kleurknop.getBackground());
 		Color orignelekleur = kleurknop.getBackground();
 		kleurknop.setBackground(Color.WHITE);
-		Timer t = new Timer(1500, new ActionListener() {
+		Timer t = new Timer(1800, new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		    	kleurknop.setBackground(orignelekleur);
 		    }
@@ -110,7 +47,7 @@ public class Game {
 		t.start();
 	}
 	
-	private ActionListener makesequenceActionListener() {
+	public ActionListener makesequenceActionListener() {
 		return new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		    	if (sequenceCounter > sequence.length() - 1) {
@@ -120,47 +57,30 @@ public class Game {
 		    	}
 		    	
 		    	char c = sequence.charAt(sequenceCounter);
-		    	System.out.println("sequenceCounter: " + sequenceCounter + ", char: " + c);
 		    	sequenceCounter++;
 		    	if (c == 'Y') {
-		    		veranderkleur(yellow);		    		
+		    		veranderkleur(buttons.yellow);		    		
 		    	}
 		    	if (c == 'R') {
-		    		veranderkleur(red);		    		
+		    		veranderkleur(buttons.red);		    		
 		    	}
 		    	if (c == 'G') {
-		    		veranderkleur(green);		    		
+		    		veranderkleur(buttons.green);		    		
 		    	}
 		    	if (c == 'B') {
-		    		veranderkleur(blue);		    		
+		    		veranderkleur(buttons.blue);		    		
 		    	}
 		    }
 		};
 	}
 	
-	
-	private void showSequence() {
-		
+public void showSequence() {
 		
 		t.setRepeats(true);
 		t.setInitialDelay(0);
 		t.start();
-		
-//		for (char c : sequence.toCharArray()) {
-//			if (c == 'Y') {
-//				veranderkleur(yellow);	
-//			}
-//			if (c == 'R') {
-//				veranderkleur(red);	
-//			}
-//			if (c == 'G') {
-//				veranderkleur(green);	
-//			}
-//			if (c == 'B') {
-//				veranderkleur(blue);	
-//			}
-//		}
 	}
+
 	
 	
 	
@@ -176,16 +96,13 @@ public class Game {
 		System.out.println(sequence);		//test
 	}
 	
-	private void input(String kleur) { //this method is what happens when you press a button
-		input = input + kleur;
-		System.out.println(input);
-	}
 	
-	private void controleinput() { //this method is work in progress
-		if(input == sequence) {
-			System.out.println("WIN");
-		} else {
-			System.out.println("LOSE");
-		}
-	}
+	
+//	private void controleinput() { //this method is work in progress
+//		if(input == sequence) {
+//			System.out.println("WIN");
+//		} else {
+//			System.out.println("LOSE");
+//		}
+//	}
 }
