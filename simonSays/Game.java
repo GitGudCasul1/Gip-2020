@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class Game {
-	String sequence = "";
+	public String sequence = "";
 	
 	int gameScore = 0;
 	Buttons buttons;
@@ -98,11 +98,5 @@ public void showSequence() {
 	
 	
 	
-//	private void controleinput() { //this method is work in progress
-//		if(input == sequence) {
-//			System.out.println("WIN");
-//		} else {
-//			System.out.println("LOSE");
-//		}
-//	}
+
 }

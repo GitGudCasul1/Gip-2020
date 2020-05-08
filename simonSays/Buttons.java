@@ -13,6 +13,7 @@ public class Buttons {
 	
 	public JButton blue, yellow, green, red;
 	String input = "";
+	int length = 0;
 	
 	Game gameinstantie;
     public Buttons(Game game) {
@@ -28,7 +29,9 @@ public class Buttons {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				input("R");				
+				input("R");	
+				controleinput();
+				length++;
 			}
 		});
 		
@@ -39,7 +42,9 @@ public class Buttons {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				input("G");				
+				input("G");	
+				controleinput();
+				length++;
 			}
 		});
 		
@@ -51,6 +56,8 @@ public class Buttons {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				input("Y");
+				controleinput();
+				length++;
 			}
 		});
 		
@@ -62,6 +69,8 @@ public class Buttons {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				input("B");
+				controleinput();
+				length++;
 			}
 		});
 		
@@ -89,5 +98,14 @@ public class Buttons {
 		System.out.println(input);
 	}
 	
-	
+	private void controleinput() { //this method is work in progress
+		char inputchar = input.charAt(length);
+		char sequencechar = gameinstantie.sequence.charAt(length);
+		
+		if(inputchar == sequencechar) {
+			System.out.println("WIN");
+		} else {
+			System.out.println("LOSE");
+		}
+	}
 }
