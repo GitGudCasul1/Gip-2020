@@ -16,8 +16,10 @@ public class Buttons {
 	int length = 0;
 	
 	Game gameinstantie;
-    public Buttons(Game game) {
+	Score scoreinstantie;
+    public Buttons(Game game, Score score) {
         this.gameinstantie = game;
+        this.scoreinstantie = score;
     }
 	
 	public void buttons(JPanel panel) { //this method creates the buttons
@@ -103,9 +105,11 @@ public class Buttons {
 		char sequencechar = gameinstantie.sequence.charAt(length);
 		
 		if(inputchar == sequencechar) {
-			System.out.println("WIN");
+			//System.out.println("WIN");
+			scoreinstantie.score("WIN");
 		} else {
-			System.out.println("LOSE");
+			//System.out.println("LOSE");
+			scoreinstantie.score("LOSE");
 		}
 	}
 }

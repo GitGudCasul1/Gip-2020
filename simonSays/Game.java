@@ -17,12 +17,14 @@ public class Game {
 	
 	int gameScore = 0;
 	Buttons buttons;
+	Score score;
 	int sequenceCounter = 0;
 	public Timer t = new Timer(2000, makesequenceActionListener());
 	
 	public static void main(String[] args) { //this is the main method, this is where you run other methods
 		Game game = new Game();
-		game.buttons = new Buttons(game);
+		game.score = new Score();
+		game.buttons = new Buttons(game, game.score);
 		JFrame frame = new JFrame();
 		frame.setSize(900,600);
 		JPanel panel = new JPanel();
