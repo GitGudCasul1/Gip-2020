@@ -31,6 +31,7 @@ public class Game {
 		
 		game.buttons.buttons(panel);
 		game.simon(4);
+		panel.add(game.score.scoreboard);
 		
 		frame.add(panel);
 		frame.setVisible(true);
