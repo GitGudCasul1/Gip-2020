@@ -14,7 +14,7 @@ import javax.swing.Timer;
 
 public class Game {
 	public String sequence = "";
-	
+	public static int patternlength = 4;
 	int gameScore = 0;
 	Buttons buttons;
 	Score score;
@@ -30,7 +30,7 @@ public class Game {
 		JPanel panel = new JPanel();
 		
 		game.buttons.buttons(panel);
-		game.simon(4);
+		game.simon(patternlength);
 		panel.add(game.score.scoreboard);
 		
 		frame.add(panel);
@@ -87,7 +87,7 @@ public void showSequence() {
 	
 	
 	
-	private void simon(int length) { //this method creates a random pattern of letters
+	public void simon(int length) { //this method creates a random pattern of letters
 		String[] array = {"R", "G", "Y","B"};
 		Random r = new Random();
 		
